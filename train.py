@@ -12,7 +12,7 @@ SPECTOGRAM_PATH = r"C:\Users\jmdgo\saved_data\spectrograms"
 TARGET_SHAPE = (256, 752)
 
 
-def load_fsdd(spectrograms_path, target_shape):
+def load_data(spectrograms_path, target_shape):
     x_train = []
     for root, _, file_names in os.walk(spectrograms_path):
         for file_name in file_names:
@@ -41,6 +41,6 @@ def train(x_train, learning_rate, batch_size, epochs):
 
 
 if __name__ == "__main__":
-    x_train = load_fsdd(SPECTOGRAM_PATH, TARGET_SHAPE)
+    x_train = load_data(SPECTOGRAM_PATH, TARGET_SHAPE)
     autoencoder = train(x_train, LEARNING_RATE, BATCH_SIZE, EPOCHS)
     autoencoder.save("model")
