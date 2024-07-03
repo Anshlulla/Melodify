@@ -10,6 +10,7 @@ The Autoencoder class represents a deep convolutional autoencoder architecture w
 * **Training**: Uses MSE loss to minimize the difference between input and reconstructed images.
 * **Saving** **and** **Loading**: Supports saving and loading of model weights and parameters.
 
+
 ## Preprocessing Pipeline:
 This pipeline facilitates preprocessing of audio data for further analysis or machine learning tasks, ensuring uniformity in input sizes and scaling of spectrogram data for model training or other applications.
 
@@ -30,5 +31,21 @@ This pipeline facilitates preprocessing of audio data for further analysis or ma
 * Instantiation: Creates instances of Loader, Padder, LogSpectrogramExtractor, MinMaxNormaliser, and Saver.
 * Pipeline Execution: Initializes a PreprocessingPipeline with instantiated components.
 Calls preprocess() method on the pipeline instance to process audio files located in AUDIO_FILES_DIR.
+
+## Train:
+* **Constants and Configuration**:
+  1. LEARNING_RATE, BATCH_SIZE, EPOCHS: Hyperparameters for training.
+  2. SPECTOGRAM_PATH: Path to the directory containing spectrogram data.
+  3. TARGET_SHAPE: Desired shape for spectrogram images after resizing.
+
+* **Loading Spectrograms**: The load_fsdd function iterates through spectrogram files in SPECTOGRAM_PATH, loads each file using np.load, adds a channel dimension (np.expand_dims), and resizes the spectrogram if its shape doesn't match TARGET_SHAPE.
+
+* **Training Function**: The train function initializes an Autoencoder model with specific architecture parameters (input_shape, conv_filters, conv_kernels, conv_strides, latent_space_dim).
+It then compiles the model, trains it on x_train data, and returns the trained autoencoder model instance.
+
+* **Main Execution**: 
+  1. X_train is loaded using load_fsdd.
+  2. The train function is called to train an autoencoder on x_train.
+  3. The trained autoencoder model is saved using autoencoder.save("model").
   
 
