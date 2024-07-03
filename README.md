@@ -67,3 +67,17 @@ The SoundGenerator class serves as a bridge between spectrogram data generated o
       * Converts denormalized spectrograms to linear amplitude spectrograms.
       * Uses the Griffin-Lim algorithm (via librosa.istft) to convert spectrograms into time-domain audio signals.
   3. Returns: A list of generated audio signals corresponding to each input spectrogram.
+
+
+## **Generate**:
+This script facilitates the generation of audio signals from spectrograms using a trained autoencoder, focusing on loading, processing, and saving audio data. It demonstrates a streamlined process for converting spectrograms into playable audio files using deep learning techniques.
+
+* **Load Data**: Loads spectrograms from a directory, adjusts their shape, and returns them along with their file paths.
+* **Select Spectrograms**: Randomly selects a specified number of spectrograms, retrieves their min-max normalization values, and returns them.
+* **Save Signals**: Saves audio signals as .wav files in a specified directory.
+
+1. Loads a trained autoencoder (ae) and initializes a SoundGenerator instance for audio generation from spectrograms.
+2. Loads min-max normalization values from a file (MIN_MAX_VALUES_PATH).
+3. Processes spectrograms: loads, selects a subset, generates audio signals from them using sound_generator, and saves both the generated and original audio signals (signals, original_signals) to designated directories (SAVE_DIR_GENERATED, SAVE_DIR_ORIGINAL).
+
+
