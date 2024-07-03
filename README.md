@@ -32,6 +32,7 @@ This pipeline facilitates preprocessing of audio data for further analysis or ma
 * Pipeline Execution: Initializes a PreprocessingPipeline with instantiated components.
 Calls preprocess() method on the pipeline instance to process audio files located in AUDIO_FILES_DIR.
 
+
 ## Train:
 * **Constants and Configuration**:
   1. LEARNING_RATE, BATCH_SIZE, EPOCHS: Hyperparameters for training.
@@ -47,5 +48,22 @@ It then compiles the model, trains it on x_train data, and returns the trained a
   1. X_train is loaded using load_fsdd.
   2. The train function is called to train an autoencoder on x_train.
   3. The trained autoencoder model is saved using autoencoder.save("model").
-  
 
+
+## SoundGenerator
+The SoundGenerator class facilitates the generation of audio signals from spectrograms using an autoencoder and additional processing steps.
+The SoundGenerator class serves as a bridge between spectrogram data generated or reconstructed by an autoencoder and the actual audio signals that can be played or analyzed further.
+* **Generate**:
+  1. Inputs: Takes spectrograms and min_max_values (containing normalization information) as input.
+  2. Functionality: Uses the autoencoder (ae) to reconstruct spectrograms from the input.
+  3. Returns: Generates audio signals from the reconstructed spectrograms using the convert_spectrograms_to_audio method and returns these signals along with latent representations from the autoencoder.
+
+* **Convert Spectrograms to Audio**:
+
+  1. Inputs: Accepts a list of reconstructed spectrograms and corresponding min_max_values.
+  2. Functionality:
+      *  Reshapes logarithmic spectrograms.
+      * Applies denormalization using a MinMaxNormaliser.
+      * Converts denormalized spectrograms to linear amplitude spectrograms.
+      * Uses the Griffin-Lim algorithm (via librosa.istft) to convert spectrograms into time-domain audio signals.
+  3. Returns: A list of generated audio signals corresponding to each input spectrogram.
