@@ -8,7 +8,7 @@ SAVE_DIR_ORIGINAL = r"C:\Users\jmdgo\Downloads\archive (9)\Data\genres_original"
 SAVE_DIR_GENERATED = r"C:\Users\jmdgo\saved_data\samples\generated"
 MIN_MAX_VALUES_PATH = r"C:\Users\jmdgo\saved_data\min_max_values\min_max_values.pkl"
 
-def load_fsdd(spectrograms_path, target_shape=(256, 752)):
+def load_data(spectrograms_path, target_shape=(256, 752)):
     x_train = []
     file_paths = []
     for root, _, file_names in os.walk(spectrograms_path):
@@ -64,7 +64,7 @@ if __name__ == "__main__":
     with open(MIN_MAX_VALUES_PATH, "rb") as f:
         min_max_values = pickle.load(f)
 
-    specs, file_paths = load_fsdd(SPECTOGRAM_PATH)
+    specs, file_paths = load_data(SPECTOGRAM_PATH)
 
     # sample spectrograms + min max values
     sampled_specs, sampled_min_max_values = select_spectrograms(specs, file_paths, min_max_values, 5)
