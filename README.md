@@ -86,3 +86,13 @@ This script facilitates the generation of audio signals from spectrograms using 
 3. Processes spectrograms: loads, selects a subset, generates audio signals from them using sound_generator, and saves both the generated and original audio signals (signals, original_signals) to designated directories (SAVE_DIR_GENERATED, SAVE_DIR_ORIGINAL).
 
 
+## Music Genre Classification
+
+We utilize a convolutional neural network (CNN) to classify music genres using MFCC features extracted from audio files.
+
+- **Dataset Setup**: Audio files are segmented into 10 slices per 29-second clip to augment training examples.
+- **Extracting MFCC Features**: MFCC features are computed for each slice and stored alongside genre labels.
+- **Saving Data**: Extracted features and labels are saved as .npy files for future use.
+- **Preparing Datasets**: The data is split into training, validation and test sets and reshaped to meet CNN input requirements.
+- **Model Architecture**: The CNN model is designed with convolutional layers, max-pooling, batch normalization, dropout and dense layers. It is compiled with the RMSprop optimizer and sparse categorical cross-entropy loss function using accuracy as the evaluation metric.
+
