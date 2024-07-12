@@ -1,4 +1,9 @@
 # Generative-Music
+
+## Dataset
+
+The dataset used for this project is the [GTZAN Dataset for Music Genre Classification](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification/data). This dataset contains 1000 audio tracks, each 30 seconds long, categorized into 10 different genres: blues, classical, country, disco, hiphop, jazz, metal, pop, reggae and rock.
+
 ## Autoencoder
 The Autoencoder class represents a deep convolutional autoencoder architecture with mirrored encoder and decoder parts.
 
